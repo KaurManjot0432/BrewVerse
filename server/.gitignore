@@ -1,2 +1,12 @@
-/node_modules
-/dist
+# ignore 3rd party lib
+node_modules
+
+# Ignore built files
+dist
+
+# Environment varibles
+*.env
+
+# ignore logs
+logs
+*.log
