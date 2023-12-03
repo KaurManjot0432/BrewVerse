@@ -1,9 +1,12 @@
-import React from "react";
+import Navbar from "../Navbar/Navbar";
+import BreweryList from "../Breweries/BreweryList";
+
 
 const Home=()=>{
     return(
         <>
-        <h3>I am Home</h3>
+        <Navbar/>
+        <BreweryList/>
         </>
     )
 }
