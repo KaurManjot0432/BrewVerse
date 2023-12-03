@@ -11,12 +11,14 @@ export class UserDAO {
 
 
     public async findByEmail(email: string): Promise<User | null> {
-        const user = await UserModel.findOne({ email: email }).exec();
-        return user;
+        const user = await UserModel.findOne({ email }).exec();
+    
+        // Use optional chaining to handle the case when user is null
+        return user?.toObject() ?? null;
     }
 
     public async findById(id: Types.ObjectId): Promise<User | null> {
         const user = await UserModel.findOne({ _id: id }).exec();
-        return user;
+        return user?.toObject() ?? null;
     }
 }

@@ -22,13 +22,12 @@ const schema = new Schema<User>(
     email: {
       type: Schema.Types.String,
       unique: true,
-      sparse: true, // allows null
       trim: true,
-      select: false,
+      select: true,
     },
     password: {
       type: Schema.Types.String,
-      select: false,
+      select: true,
     },
     createdAt: {
       type: Schema.Types.Date,

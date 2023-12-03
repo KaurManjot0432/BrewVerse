@@ -1,20 +1,19 @@
 import { verify } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
+import Logger from '../core/Logger';
 
 const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let token = req.header("auth-token");
 
         if (!token) {
-
             return res.status(403).send("Access Denied");
-
         }
 
         const secretKey = process.env.JWT_SECRET;
 
         if (!secretKey) {
-            console.error('JWT secret key is not defined.');
+            Logger.error('JWT secret key is not defined.');
             process.exit(1);
         }
         const verified = verify(token, secretKey);
