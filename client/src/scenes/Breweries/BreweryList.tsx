@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react';
-import config from '../../config';
 import { useSelector, useDispatch } from 'react-redux';
-import { setBreweries } from '../../state';
 import BreweryListItem from './BreweryListItem';
 import Box from '@mui/system/Box';
 import Grid from '@material-ui/core/Grid';
 import styled from '@mui/system/styled';
-
-interface Token {
-  token: string;
-}
 
 interface Breweries {
   breweries: Brewery[];
@@ -44,30 +38,8 @@ const Item = styled('div')(({ theme }) => ({
 }));
 
 const BreweryList: React.FC = () => {
-  const dispatch = useDispatch();
-  const token = useSelector((state: Token) => state?.token);
   const breweries = useSelector((state: Breweries) => state?.breweries);
-
-  const fetchBreweries = async () => {
-    try {
-      const url = `${config.apiUrl}/v1/breweries`;
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const parsedResponse = await response.json();
-      dispatch(setBreweries({ breweries: parsedResponse }));
-    } catch (error) {
-      console.error('Error fetching breweries:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchBreweries();
-  }, []);
-
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>

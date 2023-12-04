@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     breweries: [],
+    breweryNames: [],
+    breweryCities: [],
+    breweryTypes: [],
     token: null,
     user: null
 }
@@ -34,8 +37,17 @@ export const authSlice = createSlice({
                 return brewery._id !== action.payload.brewery._id
             })
             state.breweries = updatedBreweries;
-        }
+        },
+        setBreweryNames: (state, action) => {
+            state.breweryNames = action.payload.breweryNames;
+        },
+        setBreweryTypes: (state, action) => {
+            state.breweryTypes = action.payload.breweryTypes;
+        },
+        setBreweryCities: (state, action) => {
+            state.breweryCities = action.payload.breweryCities;
+        },
     }
 })
-export const { setLogin, setLogout, setBrewery, setBreweries, setDelete } = authSlice.actions;
+export const { setLogin, setLogout, setBrewery, setBreweries, setDelete, setBreweryNames, setBreweryTypes, setBreweryCities } = authSlice.actions;
 export default authSlice
