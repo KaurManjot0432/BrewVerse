@@ -1,46 +1,77 @@
-# Getting Started with Create React App
+# Project: Brew Verse (MERN App) - Bewery Review System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+BrewVerse is a full-stack MERN (MongoDB, Express.js, React, Node.js) application to search Brewery by City using Brewery APIs
+(https://www.openbrewerydb.org/documentation) and add reviews.
+## Functional Features
 
-In the project directory, you can run:
+BrewVerse has following functional features:
 
-### `npm start`
+- **User Authentication**: sign-up for new users and login for existing users.
+- **Review Management**: User can add reviews (rating and description) and read reviews posted by other users, managing reviews by storing directly in mongodb
+- **Brewey Display**: Brewery Details are displayed in a carousel format.
+- **Responsive Design**: Enjoy a seamless user experience across various devices with a responsive and intuitive design.
+- **Search and Filter**: Users can search for breweris based on by_city, by_name, and by_type
+- **Quick API Integration**: Connects to external APIs, such as the OpenBreweryDB, for comprehensive brewery data.
+- **Real-time Updates**: Experience real-time updates and additions to the brewery database for the latest information.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Non-Functional Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+In addition to its functional features, BrewVerse prioritizes non-functional requirements for reliability, security, and performance:
 
-### `npm test`
+- **Performance**: The application load breweries and reviews quickly
+- **Reliability**: Ensure the system functions well and recovers gracefully from issues.
+- **Usability**: The user interface is intuitive and easy to navigate
+- **Scalability**: Scalability ensures the application's performance remains stable under increased load.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technology Stack
+#### Backend
+- Typescript
+- Node.js
+- Express.js
+- MongoDB
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Frontend
+- TypeScript
+- React
+- Redux
+- Material UI
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Here are some screenshots showcasing the platform:
 
-### `npm run eject`
+- **Screenshot 1**: 
+![Alt text](/screenshots/ss1.png?raw=true "Optional Title")
+![Alt text](/screenshots/ss2.png?raw=true "Optional Title")
+![Alt text](/screenshots/ss3.png?raw=true "Optional Title")
+![Alt text](/screenshots/ss4.png?raw=true "Optional Title")
+![Alt text](/screenshots/ss5.png?raw=true "Optional Title")
+![Alt text](/screenshots/ss6.png?raw=true "Optional Title")
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone the Repository:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/KaurManjot0432/BrewVerse.git
+cd BrewVerse
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Build and Run Docker Compose:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+docker-compose up --build
+```
+- This command will build the Docker images and start the containers defined in the docker-compose.yml file.
 
-## Learn More
+3. Access the Application:
+- Once the Docker containers are up and running, you can access the BrewVerse application in your browser at http://localhost:3000.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Stop the Containers:
+- To stop the containers, use the following command in the terminal:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+docker-compose down
+```

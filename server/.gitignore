@@ -4,8 +4,8 @@ node_modules
 # Ignore built files
 dist
 
-# Environment varibles
-*.env
+# # Environment varibles
+# *.env
 
 # ignore logs
 logs
