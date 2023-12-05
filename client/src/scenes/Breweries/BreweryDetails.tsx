@@ -5,7 +5,6 @@ import { Card, CardHeader, CardContent, Typography, Badge, Button, Paper, Menu, 
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -21,6 +20,7 @@ import { useEffect, useState } from 'react';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { Reviews } from '@mui/icons-material';
+import CreateReview from '../Review/CreateReview';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -120,6 +120,10 @@ const BreweryDetails = () => {
         }
     }
 
+    const handleReviewAdded = (newReview: Review) => {
+        setReviews((reviews) => [...(reviews || []), newReview]);
+    };
+
     useEffect(() => {
         fetchReviewList();
     }, []);
@@ -129,7 +133,6 @@ const BreweryDetails = () => {
                 <Card sx={{ boxShadow: 4 }}>
                     <CardHeader
                         avatar={<Avatar sx={{ bgcolor: avatarBackgroundColor }}>{brewery.name.match(/[a-zA-Z]/)}</Avatar>}
-                        action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                         title={<Typography variant="h6">{brewery.name}</Typography>}
                     />
                     <Divider />
@@ -191,6 +194,7 @@ const BreweryDetails = () => {
                     </Collapse>
                 </Card>
             </Paper>
+            <CreateReview brewery_id={brewery.id} onReviewAdded={handleReviewAdded} />
         </div>
     );
 };
