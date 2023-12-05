@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import config from '../../config';
 import { useSelector } from 'react-redux';
-import { Card, CardHeader, CardContent, Typography, Badge, Button, Paper } from '@mui/material';
+import { Card, CardHeader, CardContent, Typography, Badge, Button, Paper, Menu, MenuList, MenuItem } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
@@ -16,6 +17,10 @@ import Box from '@mui/system/Box';
 import LinkIcon from '@mui/icons-material/Link';
 import Rating from '@mui/material/Rating';
 import Divider from '@mui/material/Divider';
+import { useEffect, useState } from 'react';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import { Reviews } from '@mui/icons-material';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -56,6 +61,15 @@ interface Brewery {
     street: string;
 }
 
+interface ReviewList {
+    reviews: Review[];
+}
+
+interface Review {
+    rating: number;
+    description: string;
+}
+
 const style = {
     width: '100%',
     maxWidth: 360,
@@ -64,12 +78,12 @@ const style = {
 
 const BreweryDetails = () => {
     const brewery = useSelector((state: SelectedBrewery) => state?.selectedBrewery);
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
+    const [reviews, setReviews] = useState<Review[] | null>(null);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
 
     const getAvatarBackgroundColor = (name: string): string => {
         // Find the first alphabet in the name
@@ -85,8 +99,30 @@ const BreweryDetails = () => {
         // Return a default color if no alphabet is found
         return 'red';
     };
+
     const avatarBackgroundColor = getAvatarBackgroundColor(brewery.name);
 
+    const fetchReviewList = async () => {
+        const url = `${config.apiUrl}/brewery/reviews/?brewery_id=${brewery.id}`;
+        const reviewList = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const res = await reviewList.json();
+        console.log(res);
+        if (res.success) {
+            setReviews(res.reviews);
+            console.log(reviews);
+        } else {
+            console.log("Error fetching reviews");
+        }
+    }
+
+    useEffect(() => {
+        fetchReviewList();
+    }, []);
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Paper elevation={4} sx={{ width: 800, margin: 2 }}>
@@ -136,6 +172,22 @@ const BreweryDetails = () => {
                         </ExpandMore>
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        {reviews && reviews.map((review) => (
+                            <Paper sx={{ width: 800, maxWidth: '100%' }}>
+                                <MenuList>
+                                    <MenuItem>
+                                        <ListItemIcon>
+                                            <Reviews fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText>{review.description}</ListItemText>
+                                        <Rating name="read-only" value={review.rating} readOnly />
+                                    </MenuItem>
+
+                                    <Divider />
+                                </MenuList>
+                            </Paper>
+                        ))
+                        }
                     </Collapse>
                 </Card>
             </Paper>
