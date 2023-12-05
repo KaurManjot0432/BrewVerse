@@ -2,6 +2,10 @@ import { ReviewService } from "../services/review.service";
 import { Request, Response, NextFunction } from 'express';
 import Logger from '../core/Logger';
 
+interface CustomRequest extends Request {
+    brewery_id?: string;
+}
+
 export class ReviewController {
     constructor(private readonly reviewService: ReviewService) { }
 
@@ -16,9 +20,9 @@ export class ReviewController {
         }
     };
 
-    public getReviews = async (req: Request, res: Response) : Promise<void | Response<any>> => {
+    public getReviews = async (req: CustomRequest, res: Response) : Promise<void | Response<any>> => {
         try {
-            const reviews = await this.reviewService.findByBreweryId(req.body.brewery_id);
+            const reviews = await this.reviewService.findByBreweryId(req.brewery_id);
             res.status(200).send({ success: true, reviews});
         } catch (err) {
             console.log(err);
