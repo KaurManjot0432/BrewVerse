@@ -60,7 +60,7 @@ const BreweryListItem: React.FC<BreweryItemProps> = ({ brewery }) => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center'}}>
       <Paper elevation={4} sx={{ width: 500, margin: 2 }}>
         <Card sx={{ boxShadow: 4 }}>
           <CardHeader

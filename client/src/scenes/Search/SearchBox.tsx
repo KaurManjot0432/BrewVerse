@@ -138,6 +138,11 @@ const SearchBox = () => {
             </Card>
           </Paper>
         </div >
+        <div className='flex-slider-center'>
+          <div className='slide-text-bg2'>
+          <h1>Find and Rate your Favourite Brewery Here</h1>
+          </div>
+          </div>
       </div>
 
       <Menu
@@ -172,13 +177,11 @@ const SearchBox = () => {
             </MenuItem>
           ))}
       </Menu>
-
       {showBreweryList && (
         <div ref={breweryListRef}>
           <BreweryList />
         </div>
       )}
-
     </>
   )
 }

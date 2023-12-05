@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 .static-banner {
     background-image: url(https://www.we-love-craft.beer/wp-content/uploads/2016/01/craft_beer_1800.jpg);
     width: 100%;
@@ -13,3 +16,42 @@
     background-position: center center;
     background-size: cover;
 }
+
+.flex-slider-center {
+    float: none;
+    height: auto;
+    left: 0;
+    margin: 0 auto;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 30.2%;
+    width: 1140px;
+    z-index: 0;
+  }
+
+  .slide-text-bg2 {
+    float: none;
+    margin: 0 0 23px;
+    padding: 0 0px 5px;
+    position: relative;
+    text-align: center;
+    width: auto;
+    z-index: 773;
+  }
+h1 {
+    color: #ffffff;
+    display: inline-block;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 80px;
+    font-weight: normal;
+    letter-spacing: 0;
+    line-height: 80px;
+    margin: 0 0 0px;
+    padding: 0 0px 0px;
+    text-align: center;
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+  }

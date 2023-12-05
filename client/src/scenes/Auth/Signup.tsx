@@ -75,7 +75,7 @@ function Signup() {
         if (newUser.success) {
             dispatch(setLogin(
                 {
-                    user: newUser.savedUser,
+                    user: newUser.user,
                     token: newUser.authToken
                 }
             ))

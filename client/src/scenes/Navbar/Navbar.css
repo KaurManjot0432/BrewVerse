@@ -3,10 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: #332d2d;
     padding: 10px;
     margin-bottom: 10px;
-    color: black;
+    color: white;
 }
 
 .navbar h2 {

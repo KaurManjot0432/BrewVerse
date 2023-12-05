@@ -41,6 +41,8 @@ const Home = () => {
         },
       });
       const parsedResponse = await response.json();
+      console.log("fetching breweries");
+      console.log(parsedResponse);
       dispatch(setBreweries({ breweries: parsedResponse }));
 
       // Extract unique names, cities, and types from the list of breweries
