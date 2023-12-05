@@ -5,15 +5,17 @@ import Logger from './core/Logger';
 import { mongoose } from './database/dataSource';
 import { UserRouter } from './routes/user.routes';
 import { UserService } from './services/user.service';
+import { ReviewRouter } from './routes/review.routes';
+import { ReviewService } from './services/review.service';
 let cors = require("cors");
 
 class App {
   public app: Application;
   public port: string | number;
 
-  constructor(userService: UserService) {
+  constructor(userService: UserService, reviewService: ReviewService) {
     this.app = express();
-    this.port = process.env.PORT ?? 5000;
+    this.port = process.env.PORT ?? 3001;
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
@@ -22,12 +24,13 @@ class App {
     }));
 
     this.initializeDb();
-    this.initializeRoutes(userService);
+    this.initializeRoutes(userService, reviewService);
     this.initializeMiddlewares();
   }
 
-  private initializeRoutes(userService: UserService): void {
+  private initializeRoutes(userService: UserService, reviewService: ReviewService): void {
     this.app.use('/user', new UserRouter(userService).initializeRoutes());
+    this.app.use('/brewery', new ReviewRouter(reviewService).initializeRoutes());
   }
 
   private initializeDb(): void {
@@ -51,6 +54,7 @@ class App {
   }
 }
 
-const userService = new UserService(); // Instantiate UserService
-const app = new App(userService);
+const userService = new UserService();
+const reviewService = new ReviewService();
+const app = new App(userService, reviewService);
 app.listen();

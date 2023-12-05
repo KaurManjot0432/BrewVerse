@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 import Logger from '../core/Logger';
 
-export class UserControler {
+export class UserController {
     constructor(private readonly userService: UserService) { }
 
     private handleValidationErrors(req: Request, res: Response): boolean {
@@ -71,7 +71,7 @@ export class UserControler {
             }
 
             const authToken = this.generateAuthToken(savedUser);
-            res.status(201).send({ success: true, authToken, savedUser });
+            res.status(200).send({ success: true, authToken, savedUser });
         } catch (err) {
             Logger.error(err);
             res.status(500).json({ success: false, error: 'Internal Server Error' });

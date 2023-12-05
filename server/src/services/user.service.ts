@@ -12,9 +12,7 @@ export class UserService {
 
     public async createUser(user: User): Promise<User> {
         user.password = await bc.hash(user.password, 10);
-        console.log("inside service");
-        console.log(user);
-        return await this.userDAO.create(user)
+        return await this.userDAO.create(user);
     }
 
     public async findUserByEmail(email: string): Promise<User | undefined> {

@@ -10,3 +10,9 @@ export const validateSignin = [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password can not be blank!').isLength({ min: 1 })
 ];
+
+export const validateReview = [
+    body('rating')
+      .isInt({ min: 1, max: 5 })
+      .withMessage('Rating must be an integer between 1 and 5'),
+  ];

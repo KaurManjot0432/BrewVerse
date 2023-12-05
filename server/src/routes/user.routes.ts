@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { UserControler } from '../controllers/user.controller';
+import { UserController } from '../controllers/user.controller';
 import { validateUser, validateSignin } from '../middlewares/validation.middleware';
 import { UserService } from '../services/user.service';
 
 export class UserRouter {
   readonly router: Router = Router();
-  readonly userController: UserControler;
+  readonly userController: UserController;
 
   constructor(userService: UserService) {
-    this.userController = new UserControler(userService); 
+    this.userController = new UserController(userService); 
   }
 
   public initializeRoutes(): Router {
