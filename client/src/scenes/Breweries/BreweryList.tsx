@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import BreweryListItem from './BreweryListItem';
 import Box from '@mui/system/Box';
 import Grid from '@material-ui/core/Grid';
@@ -39,7 +38,7 @@ const Item = styled('div')(({ theme }) => ({
 
 const BreweryList: React.FC = () => {
   const breweries = useSelector((state: Breweries) => state?.breweries);
-  
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>

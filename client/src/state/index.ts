@@ -5,7 +5,8 @@ const initialState = {
     breweryCities: [],
     breweryTypes: [],
     token: null,
-    user: null
+    user: null,
+    selectedBrewery: null,
 }
 export const authSlice = createSlice({
     name: 'auth',
@@ -32,12 +33,6 @@ export const authSlice = createSlice({
             })
             state.breweries = updatedBrewery;
         },
-        setDelete: (state, action) => {
-            const updatedBreweries = state.breweries.filter((brewery: any) => {
-                return brewery._id !== action.payload.brewery._id
-            })
-            state.breweries = updatedBreweries;
-        },
         setBreweryNames: (state, action) => {
             state.breweryNames = action.payload.breweryNames;
         },
@@ -47,7 +42,19 @@ export const authSlice = createSlice({
         setBreweryCities: (state, action) => {
             state.breweryCities = action.payload.breweryCities;
         },
+        setSelectedBrewery: (state, action) => {
+            state.selectedBrewery = action.payload.selectedBrewery;
+        },
     }
 })
-export const { setLogin, setLogout, setBrewery, setBreweries, setDelete, setBreweryNames, setBreweryTypes, setBreweryCities } = authSlice.actions;
+export const {
+    setLogin,
+    setLogout,
+    setBrewery,
+    setBreweries,
+    setBreweryNames,
+    setBreweryTypes,
+    setBreweryCities,
+    setSelectedBrewery
+} = authSlice.actions;
 export default authSlice
